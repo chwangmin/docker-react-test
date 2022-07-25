@@ -5,7 +5,6 @@ import { CookiesProvider } from "react-cookie";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter as Router } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -23,9 +22,7 @@ root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <CookiesProvider>
-        <Router>
-          <App />
-        </Router>
+        <App />
       </CookiesProvider>
     </ThemeProvider>
   </React.StrictMode>
