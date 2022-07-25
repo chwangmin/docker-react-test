@@ -11,11 +11,11 @@ services:
 #스크립트를 실행할 수 있는 환경
 before_install:
   - echo "start Creating an image with dockerfile"
-  - docker build -t loy124/docker-react -f Dockerfile.dev .
+  - docker build -t chwangmin/docker-react-test -f Dockerfile.dev .
 
 #실행할 스크립트
 script:
-  - docker run -e CI=true loy124/docker-react npm run test -- --coverage
+  - docker run -e CI=true chwangmin/docker-react-tes npm run test -- --coverage
 
 #테스트 성공 후
 after_success:
