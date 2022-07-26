@@ -5,8 +5,6 @@ import Listdisease from "../components/Listdisease"
 import styled from "styled-components";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import ButtonBase from '@mui/material/ButtonBase';
-import Typography from '@mui/material/Typography';
 import { Link, useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -28,7 +26,7 @@ export default function Home() {
   const [fileImage, setFileImage] = useState(Defaultimage);
   const Imageurl = new FormData();
   const navigate = useNavigate();
-
+  
   const saveFileImage  = (event) => {
     setFileImage(URL.createObjectURL(event.target.files[0]));
     Imageurl.append("img", event.target.files[0]);
@@ -37,6 +35,7 @@ export default function Home() {
 
   const deleteFileImage = () => {
     URL.revokeObjectURL(fileImage);
+    Imageurl.delete("img");
     setFileImage(Defaultimage);
   };
 
@@ -54,8 +53,7 @@ export default function Home() {
   }
 
   const postData = async () => {
-    const postUrl = "/conditions/classify/";
-    // console.log(postVal);
+    const postUrl = "/condition/classify";
     await axios.post(postUrl, Imageurl,{
       headers:{
         'Content-Type' : 'multipart/form-data'
@@ -71,7 +69,7 @@ export default function Home() {
             }});
         }
     }).catch(function(error){
-      console.log(error);
+        console.log(error);
     });
   }
 

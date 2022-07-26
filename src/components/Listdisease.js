@@ -11,10 +11,10 @@ import {Link} from "react-router-dom";
 
 export default function Listdisease() {
   const useGetData = () => {
-    const [ListDisease, setListDisease] = useState("");
+    const [ListDisease, setListDisease] = useState('');
 
     const getListDisease = async () => {
-      const postUrl = "/condition/";
+      const postUrl = "/condition";
       await axios.get(postUrl)
       .then((response) => {
         setListDisease(response.data);
@@ -41,7 +41,7 @@ export default function Listdisease() {
         <List>
           {ListDisease && ListDisease.map((disease) => (
             <>
-            <Link to={`/infodisease/${disease.id}`} style={{ textDecoration: 'none', color:'black'}}>
+            <Link to={`/infodisease/${disease.eng_name}`} style={{ textDecoration: 'none', color:'black'}}>
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemText primary={<Typography variant="h5" component="div" align="left" style={{textDecoration: 'none' }}>{disease.kr_name}</Typography>}/>

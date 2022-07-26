@@ -76,7 +76,7 @@ const itemData = [
       }, [localStorage.getItem('token')])
 
       const postScrap = async () => {
-        const postUrl = "/archive/";
+        const postUrl = "/archive";
         const postValue = {
           //condition : condition.kr_name,
           condition : itemData.title,

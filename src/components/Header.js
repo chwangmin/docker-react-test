@@ -70,18 +70,18 @@ function Header(){
     }, [localStorage.getItem('token')])
 
     useEffect(() => {
-      const tenMinutes = 1000 * 60 * 10
+      const fiveMinutes = 1000 * 60 * 4
 
       const interval = setInterval(()=> {
         if(authTokens){
           updateToken()
         }
-      }, tenMinutes)
+      }, fiveMinutes)
       return ()=> clearInterval(interval)
     }, [authTokens])
 
     const updateToken = async ()=> {
-      const postUrl = "/members/refresh/";
+      const postUrl = "/token/refresh";
       const postValue = {
         refresh : cookies.get("jwt"),
       }
@@ -89,6 +89,7 @@ function Header(){
       .then((response) => {
         if (response.status === 200){
           localStorage.setItem("token", response.data.access);
+          axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
           console.log("토큰 변경 성공");
       }else{
         onLogoutHandler()
@@ -104,7 +105,7 @@ function Header(){
     };
 
     const onLogoutHandler = async () => {
-      const postUrl = "/members/logout/";
+      const postUrl = "/user/logout";
       const postValue = {
         refresh: localStorage.getItem('token'),
       }

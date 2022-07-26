@@ -48,30 +48,6 @@ export default function Signup() {
       setIsdoctor(event.target.checked);
     });
 
-    const postData = async () => {
-      const postUrl = "/members/register/";
-      const postValue = {     
-        nickname: account.nickname,   
-        password: account.password,
-        email: account.email,
-        doctor_flag: isdoctor,
-      }
-      await axios.post(postUrl, postValue)  
-      .then((response) => {
-          if (response.status === 200) {
-            localStorage.clear();
-            setPopup({open: true, title: "성공!", message: (response.data.message), callback: function(){
-              navigate("/login",{replace:true});
-            }});
-          } else if(response.status === 400){
-            setPopup({open: true, title: "실패!", message: (response.data.message)});
-          }
-      }).catch(function(error){
-        console.log(error);
-      });
-    }
-
-    //이게 handleSignup역할을 함
     const onSubmit = (event) => {
       event.preventDefault()
       //잘 등록 되는지 콘솔로 확인
@@ -93,6 +69,29 @@ export default function Signup() {
       else{
         postData();
       }
+    }
+
+    const postData = async () => {
+      const postUrl = "/user/register";
+      const postValue = {     
+        nickname: account.nickname,   
+        password: account.password,
+        email: account.email,
+        doctor_flag: isdoctor,
+      }
+      await axios.post(postUrl, postValue)  
+      .then((response) => {
+          if (response.status === 200) {
+            localStorage.clear();
+            setPopup({open: true, title: "성공!", message: (response.data.message), callback: function(){
+              navigate("/login",{replace:true});
+            }});
+          } else if(response.status === 400){
+            setPopup({open: true, title: "실패!", message: (response.data.message)});
+          }
+      }).catch(function(error){
+        console.log(error);
+      });
     }
 
     return{

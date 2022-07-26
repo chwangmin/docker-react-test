@@ -1,28 +1,29 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import axios from "axios";
-import { CookiesProvider } from "react-cookie";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { createTheme, ThemeProvider } from "@mui/material";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import axios from 'axios'
+import { CookiesProvider } from 'react-cookie';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from "react-router-dom";
+import {createTheme, ThemeProvider} from "@mui/material";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const theme = createTheme({
   typography: {
     fontFamily: "'Noto Sans KR', sans-serif",
   },
-});
+})
 
 axios.defaults.baseURL = "";
 axios.defaults.withCredentials = true;
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <CookiesProvider>
-        <App />
+        <App/>
       </CookiesProvider>
     </ThemeProvider>
   </React.StrictMode>

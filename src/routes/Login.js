@@ -57,7 +57,7 @@ export default function Login() {
     };
 
     const postData = async () => {
-      const postUrl = "/members/login/";
+      const postUrl = "/user/login";
       const postValue = {
         nickname: account.nickname,
         password: account.password,
