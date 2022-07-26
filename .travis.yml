@@ -21,6 +21,7 @@ script:
 deploy:
   #외부 서비스 표시(s3, elesticbeanstalk, firebase 등등)
   provider: elasticbeanstalk
+  edge: ture
   #현재 사용하고 있는 AWS의 서비스가 위치하고있는 물리 장소
   region: "ap-notheast-2"
   #생성된 어플리케이션의 이름
